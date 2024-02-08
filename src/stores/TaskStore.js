@@ -6,5 +6,10 @@ export const useTaskStore = defineStore('taskStore', {
       { id: 1, title: 'Buy milk', isFav: false },
       { id: 2, title: 'Learn pinia', isFav: true }
     ]
-  })
+  }),
+  actions: {
+      addTask(task) {
+        this.tasks.push(task)
+      }
+    }
 })

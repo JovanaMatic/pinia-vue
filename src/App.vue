@@ -4,6 +4,9 @@
       <img src="./assets/pinia-logo.svg" alt="pinia-logo">
       <h1>Pinia Tasks</h1>
     </header>
+    <div class="new-task-form">
+      <FormTask />
+    </div>
     <nav class="filter">
       <button @click="favorite='all'">Show all tasks</button>
       <button @click="favorite='favorites'">Show favorite tasks</button>
@@ -25,11 +28,12 @@
 
 <script setup>
   import TaskDetails from './components/TaskDetails.vue'
+  import FormTask from './components/FormTask.vue'
   import { useTaskStore } from './stores/TaskStore'
   import { computed, ref } from 'vue'
 
   const taskStore = useTaskStore()
-  console.log(taskStore)
+
   const favTasks = computed(() => taskStore.tasks.filter(item => item.isFav))
 
   const favorite = ref('all')
