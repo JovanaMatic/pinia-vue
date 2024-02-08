@@ -2,8 +2,8 @@
   <div class="task">
     <h3>{{ task.title }}</h3>
     <div class="icons">
-      <i @click="handleDelete(task.id)" class="material-icons">delete</i>
-      <i class="material-icons">favorite</i>
+      <i @click="handleDelete(task.id)" class="material-icons" >delete</i>
+      <i @click=handleFavValue(task)  :class="['material-icons', { active: task.isFav }]">favorite</i>
     </div>
   </div>
 </template>
@@ -19,6 +19,12 @@
   const taskStore = useTaskStore()
   const handleDelete = (id) => {
     taskStore.deleteTask(id)
+  }
+
+  console.log(taskStore.tasks)
+
+  const handleFavValue = (task) => {
+    taskStore.favoriteTaskToggle(task)
     console.log(taskStore.tasks)
   }
 </script>
