@@ -11,6 +11,8 @@
       <button @click="favorite='all'">Show all tasks</button>
       <button @click="favorite='favorites'">Show favorite tasks</button>
     </nav>
+    <div v-if="taskStore.isLoading" class="loading">Loading tasks...</div>
+
     <div class="task-list" v-if="favorite === 'all'">
         <p>{{ favorite }} tasks, total: {{ taskStore.tasks.length }}</p>
         <div v-for="task in taskStore.tasks">
@@ -30,9 +32,11 @@
   import TaskDetails from './components/TaskDetails.vue'
   import FormTask from './components/FormTask.vue'
   import { useTaskStore } from './stores/TaskStore'
-  import { computed, ref } from 'vue'
+  import { computed, ref, onMounted } from 'vue'
 
   const taskStore = useTaskStore()
+
+  onMounted(() => taskStore.getJSONTasks())
 
   const favTasks = computed(() => taskStore.tasks.filter(item => item.isFav))
 

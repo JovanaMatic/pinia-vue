@@ -21,11 +21,8 @@
     taskStore.deleteTask(id)
   }
 
-  console.log(taskStore.tasks)
-
   const handleFavValue = (task) => {
     taskStore.favoriteTaskToggle(task)
-    console.log(taskStore.tasks)
   }
 </script>
 
