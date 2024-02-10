@@ -18,7 +18,8 @@ export const useTaskStore = defineStore('taskStore', {
         this.tasks.push(task)
         const response = await fetch('http://localhost:3000/tasks', {
           method: 'POST',
-          body: JSON.stringify(task)
+          body: JSON.stringify(task),
+          headers: { 'Content-Type': 'application/json' }
         })
 
         if (response.error) {
@@ -39,8 +40,9 @@ export const useTaskStore = defineStore('taskStore', {
         task.isFav = !task.isFav
         console.log(typeof task.id)
         const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
-           method: 'PUT',
-           body: JSON.stringify(task)
+           method: 'PATCH',
+           body: JSON.stringify({ isFav: task.isFav }),
+           headers: { 'Content-Type': 'application/json' }
          })
 
          if (response.error) {
